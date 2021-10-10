@@ -7,20 +7,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.plugin.Plugin;
 
 import static org.bukkit.Bukkit.getServer;
 
 public class BedSleep implements Listener {
 
-    private Essentials plugin;
-
-    public BedSleep(Essentials plugin) {
-        this.plugin = plugin;
-    }
-
-    public BedSleep() {
-
-    }
+    Plugin plugin = Essentials.getPlugin(Essentials.class);
 
     @EventHandler
     public void onSleep(PlayerBedEnterEvent e) {
@@ -33,12 +26,10 @@ public class BedSleep implements Listener {
                 getServer().getWorld("world").setTime(1000);
 
                 e.setCancelled(true);
-                Bukkit.broadcastMessage(p.getDisplayName() + " changed time to day by going to sleep.");
+                Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.YELLOW + " changed time to day by going to sleep.");
             } else {
                 p.sendMessage(ChatColor.YELLOW + "It is not nighttime!");
             }
-        } else {
-            System.out.println("Bed skip not enabled.");
         }
     }
 }

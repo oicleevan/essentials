@@ -8,12 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Essentials extends JavaPlugin {
 
-    private BedSleep bs = new BedSleep(this);
-
-    public BedSleep getBS() {
-        return bs;
-    }
-
     @Override
     public void onEnable() {
         // Startup logic
