@@ -1,3 +1,6 @@
 name: Essentials
 version: '${project.version}'
 main: me.evan.essentials.Essentials
+commands:
+  nick:
+    description: Set your nickname to...whatever you want!
