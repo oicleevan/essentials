@@ -1,5 +1,6 @@
 package me.evan.essentials;
 
+import me.evan.essentials.Commands.Fly;
 import me.evan.essentials.Commands.God;
 import me.evan.essentials.Commands.Nick;
 import me.evan.essentials.Events.BedSleep;
@@ -24,6 +25,7 @@ public final class Essentials extends JavaPlugin {
         // commands
         getCommand("nick").setExecutor(new Nick());
         getCommand("god").setExecutor(new God());
+        getCommand("fly").setExecutor(new Fly());
 
         getLogger().info(ChatColor.YELLOW + "Essentials enabled.");
     }
