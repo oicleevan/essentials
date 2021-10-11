@@ -27,8 +27,6 @@ public class BedSleep implements Listener {
 
                 e.setCancelled(true);
                 Bukkit.broadcastMessage(p.getDisplayName() + ChatColor.YELLOW + " changed time to day by going to sleep.");
-            } else {
-                p.sendMessage(ChatColor.YELLOW + "It is not nighttime!");
             }
         }
     }
