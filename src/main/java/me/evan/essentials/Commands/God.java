@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class God implements CommandExecutor {
-
     CommandAlertHandler alerts = new CommandAlertHandler();
 
     @Override
@@ -31,9 +30,19 @@ public class God implements CommandExecutor {
         }
 
         Player p = (Player) sender;
+        if(!(p.hasPermission("essentials.god") || p.hasPermission("essentials.*"))) {
+           alerts.no_permissions(p);
+           return false;
+        }
+
         if(args.length == 0) {
             god_toggle(p);
         } else {
+            if(!(p.hasPermission("essentials.god.others") || p.hasPermission("essentials.*"))) {
+                alerts.no_permissions(p);
+                return false;
+            }
+
             Player target = Bukkit.getPlayer(args[0]);
             if(!(target instanceof Player)) {
                 alerts.alert_player(p, "Please specify a real player as a target.");

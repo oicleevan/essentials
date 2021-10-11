@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 public class JoinLeave implements Listener {
-
     Plugin plugin = Essentials.getPlugin(Essentials.class);
 
     @EventHandler

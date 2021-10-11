@@ -5,11 +5,11 @@ import me.evan.essentials.Commands.Nick;
 import me.evan.essentials.Events.BedSleep;
 import me.evan.essentials.Events.JoinLeave;
 import me.evan.essentials.Events.MessageConfig;
+import me.evan.essentials.Handlers.CommandAlertHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Essentials extends JavaPlugin {
-
     @Override
     public void onEnable() {
         // Startup logic

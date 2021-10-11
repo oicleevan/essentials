@@ -9,7 +9,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.Plugin;
 
 public class MessageConfig implements Listener {
-
     Plugin plugin = Essentials.getPlugin(Essentials.class);
 
     @EventHandler

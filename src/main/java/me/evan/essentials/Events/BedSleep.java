@@ -12,7 +12,6 @@ import org.bukkit.plugin.Plugin;
 import static org.bukkit.Bukkit.getServer;
 
 public class BedSleep implements Listener {
-
     Plugin plugin = Essentials.getPlugin(Essentials.class);
 
     @EventHandler

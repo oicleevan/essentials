@@ -10,18 +10,18 @@ import org.bukkit.entity.Player;
 
 public class Nick implements CommandExecutor {
 
-    CommandAlertHandler errors = new CommandAlertHandler();
+    CommandAlertHandler alerts = new CommandAlertHandler();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) {
             if(args.length <= 1) {
-                errors.error_console("This command is only usable by a player.");
+                alerts.error_console("This command is only usable by a player.");
                 return false;
             } else {
                 Player target = Bukkit.getPlayer(args[0]);
                 if(!(target instanceof Player)) {
-                    errors.alert_console("Please specify a real player.");
+                    alerts.alert_console("Please specify a real player.");
                     return false;
                 }
                 String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
@@ -34,31 +34,33 @@ public class Nick implements CommandExecutor {
         }
 
         Player p = (Player) sender;
-        if(p.hasPermission("essentials.nick") || p.hasPermission("essentials.*")) {
-            switch(args.length) {
-                case 0:
-                    errors.alert_player(p, "Please specify arguments for this command!");
-                    break;
-                case 1:
-                    changeSingle(p, args);
-                    break;
-                default:
-                    if(p.hasPermission("essentials.nick.others") || p.hasPermission("essentials.*")) {
-                        Player target = Bukkit.getPlayer(args[0]);
-                        if(!(target instanceof Player)) {
-                            errors.alert_player(p, "Please specify a real player as a target!");
-                            return false;
-                        }
-                        String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
+        if(!(p.hasPermission("essentials.nick") || p.hasPermission("essentials.*"))) {
+            alerts.no_permissions(p);
+            return false;
+        }
 
-                        changeTarget(target, nickname, args);
-                        p.sendMessage(ChatColor.YELLOW + "You changed " + target.getName() + "'s username to " + ChatColor.RESET + nickname + ChatColor.YELLOW + ".");
-                    } else {
-                        errors.error_player(p, "You do not have permission to target other players with this command!");
-                    }
-            }
-        } else {
-            errors.error_player(p, "You do not have permission to execute this command!");
+        switch(args.length) {
+            case 0:
+                alerts.alert_player(p, "Please specify arguments for this command!");
+                break;
+            case 1:
+                changeSingle(p, args);
+                break;
+            default:
+                if(!(p.hasPermission("essentials.nick.others") || p.hasPermission("essentials.*"))) {
+                    alerts.no_permissions(p);
+                    return false;
+                }
+
+                Player target = Bukkit.getPlayer(args[0]);
+                if(!(target instanceof Player)) {
+                    alerts.alert_player(p, "Please specify a real player as a target!");
+                    return false;
+                }
+                String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
+
+                changeTarget(target, nickname, args);
+                p.sendMessage(ChatColor.YELLOW + "You changed " + target.getName() + "'s username to " + ChatColor.RESET + nickname + ChatColor.YELLOW + ".");
         }
 
         return true;
