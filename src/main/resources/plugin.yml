@@ -8,3 +8,7 @@ commands:
     description: Become invulnerable!
   fly:
     description: Become icarus..just don't go too high up...
+  feed:
+    description: Refill target's food level.
+  heal:
+    description: Heal target.
