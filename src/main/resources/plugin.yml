@@ -4,3 +4,5 @@ main: me.evan.essentials.Essentials
 commands:
   nick:
     description: Set your nickname to...whatever you want!
+  god:
+    description: Become invulnerable!

@@ -1,6 +1,6 @@
 package me.evan.essentials.Commands;
 
-import me.evan.essentials.Handlers.CommandErrorHandler;
+import me.evan.essentials.Handlers.CommandAlertHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class Nick implements CommandExecutor {
 
-    CommandErrorHandler errors = new CommandErrorHandler();
+    CommandAlertHandler errors = new CommandAlertHandler();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -21,13 +21,13 @@ public class Nick implements CommandExecutor {
             } else {
                 Player target = Bukkit.getPlayer(args[0]);
                 if(!(target instanceof Player)) {
-                    errors.warning_console("Please specify a real player.");
+                    errors.alert_console("Please specify a real player.");
                     return false;
                 }
                 String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
 
                 changeTarget(target, nickname, args);
-                System.out.println(ChatColor.YELLOW + "You changed " + target.getName() + "'s username to " + ChatColor.RESET + nickname + ChatColor.YELLOW + ".");
+                Bukkit.getLogger().info(ChatColor.YELLOW + "You changed " + target.getName() + "'s username to " + ChatColor.RESET + nickname + ChatColor.YELLOW + ".");
 
                 return true;
             }
@@ -37,7 +37,7 @@ public class Nick implements CommandExecutor {
         if(p.hasPermission("essentials.nick") || p.hasPermission("essentials.*")) {
             switch(args.length) {
                 case 0:
-                    errors.warning_player(p, "Please specify arguments for this command!");
+                    errors.alert_player(p, "Please specify arguments for this command!");
                     break;
                 case 1:
                     changeSingle(p, args);
@@ -46,7 +46,7 @@ public class Nick implements CommandExecutor {
                     if(p.hasPermission("essentials.nick.others") || p.hasPermission("essentials.*")) {
                         Player target = Bukkit.getPlayer(args[0]);
                         if(!(target instanceof Player)) {
-                            errors.warning_player(p, "Please specify a real player as a target!");
+                            errors.alert_player(p, "Please specify a real player as a target!");
                             return false;
                         }
                         String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
