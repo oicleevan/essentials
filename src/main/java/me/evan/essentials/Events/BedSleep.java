@@ -19,7 +19,7 @@ public class BedSleep implements Listener {
     public void onSleep(PlayerBedEnterEvent e) {
         Player p = e.getPlayer();
 
-        if(plugin.getConfig().getBoolean("enableBedSkip") == true) {
+        if(plugin.getConfig().getBoolean("enableBedSkip")) {
             long time = getServer().getWorld("world").getTime();
             if(time < 12300 || time > 2385) {
 
