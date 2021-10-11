@@ -23,11 +23,4 @@ public final class Essentials extends JavaPlugin {
 
         getLogger().info(ChatColor.YELLOW + "Essentials enabled.");
     }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
-
 }

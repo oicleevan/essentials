@@ -35,24 +35,27 @@ public class Nick implements CommandExecutor {
 
         Player p = (Player) sender;
         if(p.hasPermission("essentials.nick") || p.hasPermission("essentials.*")) {
-            if(args.length == 1) {
-                changeSingle(p, args);
-            } else if(args.length >= 2) {
-                if(p.hasPermission("essentials.nick.others") || p.hasPermission("essentials.*")) {
-                    Player target = Bukkit.getPlayer(args[0]);
-                    if(!(target instanceof Player)) {
-                        errors.warning_player(p, "Please specify a real player as a target!");
-                        return false;
-                    }
-                    String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
+            switch(args.length) {
+                case 0:
+                    errors.warning_player(p, "Please specify arguments for this command!");
+                    break;
+                case 1:
+                    changeSingle(p, args);
+                    break;
+                default:
+                    if(p.hasPermission("essentials.nick.others") || p.hasPermission("essentials.*")) {
+                        Player target = Bukkit.getPlayer(args[0]);
+                        if(!(target instanceof Player)) {
+                            errors.warning_player(p, "Please specify a real player as a target!");
+                            return false;
+                        }
+                        String nickname = ChatColor.translateAlternateColorCodes('&', args[1]);
 
-                    changeTarget(target, nickname, args);
-                    p.sendMessage(ChatColor.YELLOW + "You changed " + target.getName() + "'s username to " + ChatColor.RESET + nickname + ChatColor.YELLOW + ".");
-                } else {
-                    errors.error_player(p, "You do not have permission to target other players with this command!");
-                }
-            } else {
-                errors.warning_player(p, "Please specify arguments for this command!");
+                        changeTarget(target, nickname, args);
+                        p.sendMessage(ChatColor.YELLOW + "You changed " + target.getName() + "'s username to " + ChatColor.RESET + nickname + ChatColor.YELLOW + ".");
+                    } else {
+                        errors.error_player(p, "You do not have permission to target other players with this command!");
+                    }
             }
         } else {
             errors.error_player(p, "You do not have permission to execute this command!");
