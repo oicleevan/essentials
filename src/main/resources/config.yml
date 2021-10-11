@@ -2,4 +2,12 @@
 # Essentials config.yml #
 #########################
 
+# Messages for when someone joins or quits respectively.
+joinMessage: "&8[&a+&8]"
+quitMessage: "&8[&c-&8]"
+
+# Message formatting
+messageFormat: "%displayname%&8:&7"
+
+# Allows skipping night by using a bed.
 enableBedSkip: false
