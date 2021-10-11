@@ -1,4 +1,4 @@
-package me.evan.essentials.Commands;
+package me.evan.essentials.Commands.General;
 
 import me.evan.essentials.Handlers.CommandAlertHandler;
 import org.bukkit.Bukkit;

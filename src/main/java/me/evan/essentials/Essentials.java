@@ -1,6 +1,6 @@
 package me.evan.essentials;
 
-import me.evan.essentials.Commands.*;
+import me.evan.essentials.Commands.General.*;
 import me.evan.essentials.Events.BedSleep;
 import me.evan.essentials.Events.JoinLeave;
 import me.evan.essentials.Events.MessageConfig;
