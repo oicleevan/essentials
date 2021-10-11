@@ -59,10 +59,11 @@ public class Fly implements CommandExecutor {
     void toggle_fly(Player commandTarget) {
         if(commandTarget.isFlying())
         {
+            commandTarget.setAllowFlight(false);
             commandTarget.setFlying(false);
-            alerts.alert_player(commandTarget, "You are no longer flying.");
+            alerts.alert_player(commandTarget, "You are no longer in fly mode.");
         } else {
-            commandTarget.setFlying(true);
+            commandTarget.setAllowFlight(true);
             alerts.alert_player(commandTarget, "You are now in fly mode.");
         }
     }
