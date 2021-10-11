@@ -6,3 +6,5 @@ commands:
     description: Set your nickname to...whatever you want!
   god:
     description: Become invulnerable!
+  fly:
+    description: Become icarus..just don't go too high up...
