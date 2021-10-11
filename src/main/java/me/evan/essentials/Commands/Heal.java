@@ -25,6 +25,8 @@ public class Heal implements CommandExecutor {
 
                 heal_player(target);
                 alerts.alert_console("You healed" + target.getDisplayName() + ".");
+
+                return true;
             }
         }
 

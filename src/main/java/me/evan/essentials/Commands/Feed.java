@@ -26,6 +26,8 @@ public class Feed implements CommandExecutor {
 
                 feed_player(target);
                 alerts.alert_console("You healed" + target.getDisplayName() + ".");
+
+                return true;
             }
         }
 
